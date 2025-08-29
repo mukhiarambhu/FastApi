@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Form
 from pydantic import BaseModel,HttpUrl
 from typing import Set
 
@@ -36,3 +36,10 @@ def addProduct(produt:Product,productId:int):
 @app.post('/purchase')
 def purchase(user:User,product:Product):
     return{"user":user,"product":product}
+
+
+# from to submit data
+
+@app.post("/login")
+def login(user_name:str=Form(...),password:str=Form(...)):
+    return user_name
