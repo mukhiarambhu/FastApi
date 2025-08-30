@@ -1,0 +1,6 @@
+fastapi
+sqlalchemy
+uvicorn
+pydantic
+sqlmodel
+# to install packages from requirements file use command pip install -r requirement.txt
