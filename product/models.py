@@ -6,3 +6,13 @@ class Product(SQLModel, table=True):
     name:str =Field(index=True)
     description:str
     price:int
+    
+    
+class ProductReplace(SQLModel):
+    name: str
+    description: str
+    price: int
+    
+class ResponseModel(SQLModel):
+    name: str
+    price: int
