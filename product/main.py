@@ -31,14 +31,14 @@ def get_allProduct(session:SessionDep)->list[Product]:
 def get_product_byId(session:SessionDep,productid:int)->Product:
     product = session.get(Product,productid)
     if not product:
-            raise HTTPException(status_code=404, detail="Hero not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="product not found")
     return product
 
 @app.delete('/product/{productId}')
 def delete_product(productId:int,session:SessionDep):
     product = session.get(Product,productId)
     if not product:
-        raise HTTPException(status_code=404, detail="Hero not found")
+        raise HTTPException(status_code=404, detail="product not found")
     session.delete(product)
     session.commit()
     return{f"product deleted with id {productId}"}
@@ -49,7 +49,6 @@ def replace_product(productid: int, product_data: ProductReplace, session: Sessi
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     
-    # Replace ALL fields (complete replacement)
     product.name = product_data.name
     product.description = product_data.description
     product.price = product_data.price
